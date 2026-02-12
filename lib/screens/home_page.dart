@@ -15,8 +15,9 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage>{
   socket_io.Socket? socket;
-
   TextEditingController chatController = TextEditingController();
+
+  List<String?> playerCards = [];
 
   @override
   void initState() {
@@ -38,9 +39,16 @@ class _HomePageState extends State<HomePage>{
     super.dispose();
   }
 
+  void dealNewCards(){
+
+  }
+
   void setupListeners() {
     socket?.on('connect', (_) => Logger().i('Connected'));
     socket?.on('fromServer', (data) {
+      Logger().w('Server says: $data');
+    });
+    socket?.on('getCard', (data) {
       Logger().w('Server says: $data');
     });
     socket?.on('disconnect', (_) => Logger().e('Disconnected'));
@@ -63,6 +71,7 @@ class _HomePageState extends State<HomePage>{
             if (chatController.text.isNotEmpty) {
               socket?.emit('msg', chatController.text);
               chatController.clear();
+              socket?.emit('requestCard');
             }
           },
           child: const Text('Send to Server'),
