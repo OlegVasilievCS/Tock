@@ -8,11 +8,15 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 new_deck = Deck()
 new_deck.create_deck()
+new_deck.shuffle_deck()
 
 @socketio.on('requestCard')
 def handle_cards():
     # distribute_cards()
-    emit('getCard', str(new_deck.give_random_card()))
+    hand = []
+    for i in range(4):
+        hand.append(new_deck.give_random_card())
+    emit('getCard',str(hand) )
 
 
 @socketio.on('connect')
