@@ -16,8 +16,17 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage> {
   socket_io.Socket? socket;
   TextEditingController chatController = TextEditingController();
-  List<String?> playerHand = [];
   List<String?> playerCards = [];
+
+  Widget buildCard(int cardIndex){
+    return Expanded(child: GestureDetector(
+      onTap: () {
+        print("Card ${cardIndex + 1} is played");
+      },
+      child: Image.asset('images/${playerCards[cardIndex]}.png', fit: BoxFit.contain),
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -39,10 +48,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  void dealNewCards() {
-
-  }
-
   void parseReceivedHand(data) {
     String sentence = data.toString();
 
@@ -50,13 +55,14 @@ class _HomePageState extends State<HomePage> {
         .replaceAll('[', '')
         .replaceAll(']', '')
         .replaceAll("'", '');
+
     List<String> splitSentence = cleanSentence
         .split(',')
         .map((e) => e.trim())
         .toList();
 
     setState(() {
-      playerHand = splitSentence;
+      playerCards = splitSentence;
     });
 
     print("split " + splitSentence.toString());
@@ -69,6 +75,7 @@ class _HomePageState extends State<HomePage> {
     });
     socket?.on('getCard', (data) {
       Logger().w('Server says: $data');
+
       parseReceivedHand(data);
     });
     socket?.on('disconnect', (_) => Logger().e('Disconnected'));
@@ -97,29 +104,17 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text('Send to Server'),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  print("new" + playerHand.toString());
-                },
-                child:
-                Text('No Cards yet')
-            ),
             SizedBox(
               height: 200,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: playerHand.length < 4
+                children: playerCards.length < 4
                     ? [const Text('Waiting for cards...')]
                     : [
-                  Expanded(child: Image.asset(
-                      'images/${playerHand[0]}.png', fit: BoxFit.contain)),
-                  Expanded(child: Image.asset(
-                      'images/${playerHand[1]}.png', fit: BoxFit.contain)),
-                  Expanded(child: Image.asset(
-                      'images/${playerHand[2]}.png', fit: BoxFit.contain)),
-                  Expanded(child: Image.asset(
-                      'images/${playerHand[3]}.png', fit: BoxFit.contain)),
-                ],
+                      buildCard(0),
+                      buildCard(1),
+                      buildCard(2),
+                      buildCard(3),
+                ]
               ),
             ),
           ],
