@@ -17,9 +17,15 @@ class _HomePageState extends State<HomePage> {
   socket_io.Socket? socket;
   TextEditingController chatController = TextEditingController();
   List<String?> playerCards = [];
+  List<String?> playerBalls = [];
+
+  // To DO:
+
+  // Add field via Stack Widget
 
   Widget buildCard(int cardIndex){
-    return Expanded(child: GestureDetector(
+    return Expanded(
+      child: GestureDetector(
       onTap: () {
         print("Card ${cardIndex + 1} is played");
       },
@@ -104,6 +110,7 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text('Send to Server'),
             ),
+            const Spacer(),
             SizedBox(
               height: 200,
               child: Row(
