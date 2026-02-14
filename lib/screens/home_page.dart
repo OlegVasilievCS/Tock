@@ -110,6 +110,15 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text('Send to Server'),
             ),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(8.0)),
+                    child: Image.asset('images/board.jpg'),
+                  ),
+              ]
+            ),
             const Spacer(),
             SizedBox(
               height: 200,
