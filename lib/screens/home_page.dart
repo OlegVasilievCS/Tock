@@ -19,9 +19,12 @@ class _HomePageState extends State<HomePage> {
   List<String?> playerCards = [];
   List<String?> playerBalls = [];
 
-  // To DO:
-
-  // Add field via Stack Widget
+  List<Alignment> mockHoles = [
+    Alignment(-0.5, -0.5),
+    Alignment(-0.5, 0.5),
+    Alignment(0.5, -0.5),
+    Alignment(0.5, 0.5),
+  ];
 
   Widget buildCard(int cardIndex){
     return Expanded(
@@ -119,15 +122,14 @@ class _HomePageState extends State<HomePage> {
                     top: Radius.circular(8.0)),
                     child: Image.asset('images/board.jpg'),
                   ),
-                Align(
-                  alignment: Alignment(0, 0),
-                child: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: Image.asset('images/green_marble.jpg',
-                  fit: BoxFit.contain),
-                )
-                )
+                ...mockHoles.map((pos) => Align(
+                  alignment: pos,
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: Image.asset('images/green_marble.jpg'),
+                  ),
+                )).toList()
               ]
             ),
             ),
