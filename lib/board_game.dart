@@ -21,42 +21,26 @@ class BoardGame {
     Alignment(-0.84, 0.10), //SW15
     Alignment(-0.84, 0.00), //SW16
     Alignment(-0.84, -0.09), //SW17
-    Alignment(0.10, -0.84), //NW17
-    Alignment(0.01, -0.84), //NW16
-    Alignment(-0.08, -0.84), //NW15
-    Alignment(-0.175, -0.865), //NW14
-    Alignment(-0.13, -0.78), //NW13
-    Alignment(-0.10, -0.69), //NW12
-    Alignment(-0.09, -0.59), //NW11
-    Alignment(-0.10, -0.50), //NW10
-    Alignment(-0.13, -0.40), //NW09
-    Alignment(-0.17, -0.32), //NW08
-    Alignment(-0.24, -0.24), //NW07
-    Alignment(-0.30, -0.19), //NW06
-    Alignment(-0.39, -0.14), //NW05
-    Alignment(-0.49, -0.11), //NW04
-    Alignment(-0.58, -0.10), //NW03
-    Alignment(-0.67, -0.11), //NW02
-    Alignment(-0.75, -0.14), //NW01
+
     Alignment(-0.85, -0.18), //NW00
-    Alignment(-0.09, 0.865), //SE17
-    Alignment(0.01, 0.865), //SE16
-    Alignment(0.11, 0.865), //SE15
-    Alignment(0.19, 0.865), //SE14
-    Alignment(0.15, 0.78), //SE13
-    Alignment(0.13, 0.69), //SE12
-    Alignment(0.11, 0.59), //SE11
-    Alignment(0.12, 0.50), //SE10
-    Alignment(0.15, 0.41), //SE09
-    Alignment(0.20, 0.33), //SE08
-    Alignment(0.26, 0.26), //SE07
-    Alignment(0.34, 0.19), //SE06
-    Alignment(0.42, 0.15), //SE05
-    Alignment(0.515, 0.12), //SE04
-    Alignment(0.62, 0.12), //SE03
-    Alignment(0.7, 0.12), //SE02
-    Alignment(0.79, 0.15), //SE01
-    Alignment(0.87, 0.19), //SE00
+    Alignment(-0.75, -0.14), //NW01
+    Alignment(-0.67, -0.11), //NW02
+    Alignment(-0.58, -0.10), //NW03
+    Alignment(-0.49, -0.11), //NW04
+    Alignment(-0.39, -0.14), //NW05
+    Alignment(-0.30, -0.19), //NW06
+    Alignment(-0.24, -0.24), //NW07
+    Alignment(-0.17, -0.32), //NW08
+    Alignment(-0.13, -0.40), //NW09
+    Alignment(-0.10, -0.50), //NW10
+    Alignment(-0.09, -0.59), //NW11
+    Alignment(-0.10, -0.69), //NW12
+    Alignment(-0.13, -0.78), //NW13
+    Alignment(-0.175, -0.865), //NW14
+    Alignment(-0.08, -0.84), //NW15
+    Alignment(0.01, -0.84), //NW16
+    Alignment(0.10, -0.84), //NW17
+
     Alignment(0.2, -0.86), //NE00
     Alignment(0.15, -0.78), //NE01
     Alignment(0.13, -0.69), //NE02
@@ -75,5 +59,25 @@ class BoardGame {
     Alignment(0.87, -0.09), //NE15
     Alignment(0.87, -0.0), //NE16
     Alignment(0.87, 0.09), //NE17
+
+    Alignment(0.87, 0.19), //SE00
+    Alignment(0.79, 0.15), //SE01
+    Alignment(0.7, 0.12), //SE02
+    Alignment(0.62, 0.12), //SE03
+    Alignment(0.515, 0.12), //SE04
+    Alignment(0.42, 0.15), //SE05
+    Alignment(0.34, 0.19), //SE06
+    Alignment(0.26, 0.26), //SE07
+    Alignment(0.20, 0.33), //SE08
+    Alignment(0.15, 0.41), //SE09
+    Alignment(0.12, 0.50), //SE10
+    Alignment(0.11, 0.59), //SE11
+    Alignment(0.13, 0.69), //SE12
+    Alignment(0.15, 0.78), //SE13
+    Alignment(0.19, 0.865), //SE14
+    Alignment(0.11, 0.865), //SE15
+    Alignment(0.01, 0.865), //SE16
+    Alignment(-0.09, 0.865), //SE17
+
   ];
 }

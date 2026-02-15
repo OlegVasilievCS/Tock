@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<String?> playerCards = [];
   List<String?> playerBalls = [];
   BoardGame boardGame = BoardGame();
+  int playerPosition = 0;
 
 
 
@@ -28,6 +29,10 @@ class _HomePageState extends State<HomePage> {
       child: GestureDetector(
       onTap: () {
         print("Card ${cardIndex + 1} is played");
+        setState(() {
+          playerPosition += 2;
+
+        });
       },
       child: Image.asset('images/${playerCards[cardIndex]}.png', fit: BoxFit.contain),
       ),
@@ -119,8 +124,8 @@ class _HomePageState extends State<HomePage> {
                     top: Radius.circular(8.0)),
                     child: Image.asset('images/board.jpg'),
                   ),
-                ...boardGame.boardHoles.map((pos) => Align(
-                  alignment: pos,
+                Align(
+                  alignment: boardGame.boardHoles[playerPosition],
                   child: SizedBox(
                     width: 13,
                     height: 13,
@@ -129,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                       fit: BoxFit.cover),
                   ),
                   )
-                )).toList()
+                )
               ]
             ),
             ),
