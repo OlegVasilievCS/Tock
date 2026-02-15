@@ -125,10 +125,13 @@ class _HomePageState extends State<HomePage> {
                 ...mockHoles.map((pos) => Align(
                   alignment: pos,
                   child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: Image.asset('images/green_marble.jpg'),
+                    width: 10,
+                    height: 10,
+                    child: ClipOval(
+                    child: Image.asset('images/green_marble.jpg',
+                      fit: BoxFit.cover),
                   ),
+                  )
                 )).toList()
               ]
             ),
