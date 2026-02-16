@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as socket_io;
 import 'package:logger/logger.dart';
 import 'package:tock/board_game.dart';
+import 'package:tock/card_rules.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -21,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   List<String?> playerBalls = [];
   BoardGame boardGame = BoardGame();
   int playerPosition = 0;
+  CardRules cardRules = CardRules();
 
 
 
@@ -29,11 +31,16 @@ class _HomePageState extends State<HomePage> {
       child: GestureDetector(
       onTap: () {
         print("Card ${cardIndex + 1} is played");
-        setState(() {
-          playerPosition += 2;
+        print("Card ${playerCards[cardIndex]} is played");
+        int? value = cardRules.executeCardMovement(playerCards[cardIndex]!);
 
+        if(value != null){
+          setState(() {
+          playerPosition += value;
+          //TO DO make the card played become the back picture of a card
         });
-      },
+      }
+        },
       child: Image.asset('images/${playerCards[cardIndex]}.png', fit: BoxFit.contain),
       ),
     );
