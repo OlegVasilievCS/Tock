@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   BoardGame boardGame = BoardGame();
   int playerPosition = 0;
   CardRules cardRules = CardRules();
-
+  List<bool> cardAlreadyPlayed = [false, false, false, false];
 
 
   Widget buildCard(int cardIndex){
@@ -33,17 +33,25 @@ class _HomePageState extends State<HomePage> {
         print("Card ${cardIndex + 1} is played");
         print("Card ${playerCards[cardIndex]} is played");
         int? value = cardRules.executeCardMovement(playerCards[cardIndex]!);
+        cardAlreadyPlayed[cardIndex] = true;
+
 
         if(value != null){
           setState(() {
           playerPosition += value;
-          //TO DO make the card played become the back picture of a card
+
         });
       }
         },
-      child: Image.asset('images/${playerCards[cardIndex]}.png', fit: BoxFit.contain),
+      child: Image.asset(
+          cardAlreadyPlayed[cardIndex]
+              ? 'images/card_back.png'
+              : 'images/${playerCards[cardIndex]}.png',
+
+          fit: BoxFit.contain
       ),
-    );
+      ),
+      );
   }
 
   @override
