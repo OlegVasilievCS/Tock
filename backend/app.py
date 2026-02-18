@@ -18,6 +18,9 @@ def handle_cards():
         hand.append(new_deck.give_random_card())
     emit('getCard',str(hand) )
 
+@socketio.on('sendPosition')
+def handle_marble(position):
+    print(f'The marble X moved to position {position}')
 
 @socketio.on('connect')
 def handle_connect():

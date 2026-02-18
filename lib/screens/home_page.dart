@@ -35,14 +35,16 @@ class _HomePageState extends State<HomePage> {
         int? value = cardRules.executeCardMovement(playerCards[cardIndex]!);
         cardAlreadyPlayed[cardIndex] = true;
 
-
         if(value != null){
           setState(() {
           playerPosition += value;
 
         });
       }
-        },
+
+        socket?.emit('sendPosition', playerPosition);
+
+      },
       child: Image.asset(
           cardAlreadyPlayed[cardIndex]
               ? 'images/card_back.png'
