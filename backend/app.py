@@ -2,13 +2,18 @@ from flask import Flask
 from flask_socketio import SocketIO, emit
 
 from card_deck import Deck
+from game_session import GameSession
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+game_array = []
+
 new_deck = Deck()
 new_deck.create_deck()
 new_deck.shuffle_deck()
+
+new_game_session = GameSession()
 
 @socketio.on('requestCard')
 def handle_cards():

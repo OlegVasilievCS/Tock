@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tock/screens/game_selection_screen.dart';
 import 'package:tock/screens/home_page.dart';
 
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AI Anki',
-      home: HomePage(),
+      home: GameSelectionScreen(),
     );
   }
 }
