@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         });
       }
 
-        socket?.emit('sendPosition', playerPosition);
+        // socket?.emit('startGame', playerPosition);
 
       },
       child: Image.asset(

@@ -1,3 +1,6 @@
+import 'package:logger/logger.dart';
+import 'package:socket_io_client/socket_io_client.dart' as socket_io;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +14,51 @@ class GameSelectionScreen extends StatefulWidget{
 }
 
 class _GameSelectionScreenState extends State<GameSelectionScreen>{
+  socket_io.Socket? socket;
+  TextEditingController playerName = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    socket = socket_io.io(
+        'http://10.0.2.2:5000',
+        socket_io.OptionBuilder()
+            .setTransports(['websocket', 'polling'])
+            .enableAutoConnect()
+            .build()
+    );
+
+    setupListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void setupListeners() {
+    socket?.on('connect', (_) => Logger().i('Connected'));
+    socket?.on('fromServer', (data) {
+      Logger().w('Server says: $data');
+    });
+    socket?.on('disconnect', (_) => Logger().e('Disconnected'));
+  }
+
+
 
   Future openDialog() => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: Text('Your name'),
       content: TextField(
+        controller: playerName,
         decoration: InputDecoration(hintText: 'Enter your name'),
       ),
       actions: [
-        TextButton(onPressed: () {}, child: Text('Submit'))
+        TextButton(onPressed: () {
+          socket?.emit('startGame', playerName.text);
+        }, child: Text('Submit'))
       ],
     )
 

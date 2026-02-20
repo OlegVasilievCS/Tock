@@ -13,7 +13,17 @@ new_deck = Deck()
 new_deck.create_deck()
 new_deck.shuffle_deck()
 
-new_game_session = GameSession()
+@socketio.on('startGame')
+def handle_game_creation(name_of_game_creator):
+    print(f'Request from {name_of_game_creator} was received')
+
+    new_game_session = GameSession(name_of_game_creator)
+    game_array.append(new_game_session)
+
+    print(f'Game created for {new_game_session.player_one} ')
+
+    # emit('announceGame', str(new_game_session.game_session_number))
+
 
 @socketio.on('requestCard')
 def handle_cards():
