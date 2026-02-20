@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) =>
       Scaffold(
-        appBar: AppBar(title: const Text('Flutter Socket IO')),
+        appBar: AppBar(title: const Text('Flutter Socket IO')), // Replace with the game number
         body: Column(
           children: [
             Padding(

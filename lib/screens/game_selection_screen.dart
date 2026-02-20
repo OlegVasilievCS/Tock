@@ -4,6 +4,8 @@ import 'package:socket_io_client/socket_io_client.dart' as socket_io;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class GameSelectionScreen extends StatefulWidget{
   const GameSelectionScreen({super.key});
 
@@ -58,6 +60,12 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       actions: [
         TextButton(onPressed: () {
           socket?.emit('startGame', playerName.text);
+          Navigator.of(context).pop();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
         }, child: Text('Submit'))
       ],
     )
