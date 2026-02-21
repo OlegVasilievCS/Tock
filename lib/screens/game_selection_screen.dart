@@ -18,6 +18,7 @@ class GameSelectionScreen extends StatefulWidget{
 class _GameSelectionScreenState extends State<GameSelectionScreen>{
   socket_io.Socket? socket;
   TextEditingController playerName = TextEditingController();
+  TextEditingController gameNumberToJoin = TextEditingController();
   String currentGameNumber = '';
 
   @override
@@ -52,11 +53,11 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       currentGameNumber = data.toString();
       print("Current game from Print is $currentGameNumber");
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => HomePage(gameId: currentGameNumber),
-        ),
-      );
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => HomePage(gameId: currentGameNumber),
+      //   ),
+      // );
 
     });
 
@@ -64,13 +65,13 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
   }
 
 
-  Future openDialog() => showDialog(
+  Future openStartGameDialog() => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: Text('Your name'),
       content: TextField(
         controller: playerName,
-        decoration: InputDecoration(hintText: 'Enter your name'),
+        decoration: InputDecoration(hintText: 'Enter your name to start game'),
       ),
       actions: [
         TextButton(onPressed: () {
@@ -82,6 +83,39 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
 
   );
 
+  Future openJoinGameDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Game ID'),
+        content: TextField(
+          controller: gameNumberToJoin,
+          decoration: InputDecoration(hintText: 'Enter your game ID'),
+        ),
+        actions: [
+          TextButton(onPressed: () {
+            socket?.emit('joinGameViaGameID', gameNumberToJoin.text);
+            Navigator.of(context).pop();
+          }, child: Text('Submit'))
+        ],
+      )
+  );
+//TO DO: Continue game joining
+  Future openAddNameDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Your name'),
+        content: TextField(
+          controller: playerName,
+          decoration: InputDecoration(hintText: 'Enter your name to join game'),
+        ),
+        actions: [
+          TextButton(onPressed: () {
+            socket?.emit('joinGame', playerName.text);
+            Navigator.of(context).pop();
+          }, child: Text('Submit'))
+        ],
+      )
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +131,15 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
         child: Text('Create Game'
         ),
         onTap: (){
-          openDialog();
+          openStartGameDialog();
         },
       ),
           GestureDetector(
             child: Text('Join Game'
             ),
-            onTap: (){
-              openDialog();
+            onTap: () async {
+              await openJoinGameDialog();
+              await openAddNameDialog();
             },
           ),
       ]

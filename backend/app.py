@@ -17,6 +17,11 @@ new_deck.shuffle_deck()
 # def handle_game_number():
 #     emit('gameNumberFromServer', )
 
+@socketio.on('joinGameViaGameID')
+def handle_game_join(currentGameNumber):
+    print(f"Request received to join game id: {str(currentGameNumber)}")
+
+
 @socketio.on('startGame')
 def handle_game_creation(name_of_game_creator):
     print(f'Request from {name_of_game_creator} was received')
