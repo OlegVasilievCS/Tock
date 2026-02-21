@@ -61,9 +61,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
     });
 
     socket?.on('disconnect', (_) => Logger().e('Disconnected'));
-
   }
-
 
 
   Future openDialog() => showDialog(
@@ -93,13 +91,24 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
         title: Text( "Select Game"
       ),
       ),
-      body: GestureDetector(
+      body: Column(
+        children: [
+          GestureDetector(
         child: Text('Create Game'
         ),
         onTap: (){
           openDialog();
         },
       ),
+          GestureDetector(
+            child: Text('Join Game'
+            ),
+            onTap: (){
+              openDialog();
+            },
+          ),
+      ]
+      )
     );
   }
 
