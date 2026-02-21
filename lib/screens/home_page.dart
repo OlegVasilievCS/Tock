@@ -8,7 +8,8 @@ import 'package:tock/board_game.dart';
 import 'package:tock/card_rules.dart';
 
 class HomePage extends StatefulWidget{
-  const HomePage({super.key});
+  final String gameId;
+  const HomePage({super.key, required this.gameId});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) =>
       Scaffold(
-        appBar: AppBar(title: const Text('Flutter Socket IO')), // Replace with the game number
+        appBar: AppBar(title: Text("Game ID: ${widget.gameId}")),
         body: Column(
           children: [
             Padding(

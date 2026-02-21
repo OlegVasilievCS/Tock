@@ -18,6 +18,7 @@ class GameSelectionScreen extends StatefulWidget{
 class _GameSelectionScreenState extends State<GameSelectionScreen>{
   socket_io.Socket? socket;
   TextEditingController playerName = TextEditingController();
+  String currentGameNumber = '';
 
   @override
   void initState() {
@@ -41,13 +42,24 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
 
   void setupListeners() {
     socket?.on('connect', (_) => Logger().i('Connected'));
+
     socket?.on('fromServer', (data) {
       Logger().w('Server says: $data');
     });
 
     socket?.on('gameNumberFromServer',(data){
       Logger().w('Server says GameNumber: $data');
+      currentGameNumber = data.toString();
+      print("Current game from Print is $currentGameNumber");
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => HomePage(gameId: currentGameNumber),
+        ),
+      );
+
     });
+
     socket?.on('disconnect', (_) => Logger().e('Disconnected'));
 
   }
@@ -66,11 +78,6 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
         TextButton(onPressed: () {
           socket?.emit('startGame', playerName.text);
           Navigator.of(context).pop();
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
         }, child: Text('Submit'))
       ],
     )
