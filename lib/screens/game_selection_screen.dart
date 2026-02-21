@@ -44,7 +44,12 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
     socket?.on('fromServer', (data) {
       Logger().w('Server says: $data');
     });
+
+    socket?.on('gameNumberFromServer',(data){
+      Logger().w('Server says GameNumber: $data');
+    });
     socket?.on('disconnect', (_) => Logger().e('Disconnected'));
+
   }
 
 

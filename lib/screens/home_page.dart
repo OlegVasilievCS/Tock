@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
   socket_io.Socket? socket;
+
   TextEditingController chatController = TextEditingController();
   List<String?> playerCards = [];
   List<String?> playerBalls = [];
@@ -24,6 +25,8 @@ class _HomePageState extends State<HomePage> {
   int playerPosition = 0;
   CardRules cardRules = CardRules();
   List<bool> cardAlreadyPlayed = [false, false, false, false];
+
+  int currentGameNumber = 0;
 
 
   Widget buildCard(int cardIndex){

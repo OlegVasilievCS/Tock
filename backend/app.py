@@ -13,6 +13,10 @@ new_deck = Deck()
 new_deck.create_deck()
 new_deck.shuffle_deck()
 
+# @socketio.on('getGameNumber')
+# def handle_game_number():
+#     emit('gameNumberFromServer', )
+
 @socketio.on('startGame')
 def handle_game_creation(name_of_game_creator):
     print(f'Request from {name_of_game_creator} was received')
@@ -21,6 +25,8 @@ def handle_game_creation(name_of_game_creator):
     game_array.append(new_game_session)
 
     print(f'Game created for {new_game_session.player_one} ')
+    print(f'Gname Number is {new_game_session.game_session_number} ')
+    emit('gameNumberFromServer', new_game_session.game_session_number)
 
     # emit('announceGame', str(new_game_session.game_session_number))
 
