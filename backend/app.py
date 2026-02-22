@@ -42,15 +42,15 @@ def handle_game_creation(name_of_game_creator):
     game_array.append(new_game_session)
 
     print(f'Game created for {new_game_session.players[0]} ')
-    print(f'Gname Number is {new_game_session.game_session_number} ')
+    print(f'Game Number is {new_game_session.game_session_number} ')
     emit('gameNumberFromServer', new_game_session.game_session_number)
 
-    # emit('announceGame', str(new_game_session.game_session_number))
 
 
 @socketio.on('requestCard')
-def handle_cards():
+def handle_cards(game_id):
     # distribute_cards()
+    print(f"Received cards request from game: ", game_id)
     hand = []
     for i in range(4):
         hand.append(new_deck.give_random_card())
@@ -69,7 +69,6 @@ def handle_message(data):
     print(f'Received message: {data}')
     emit('fromServer', 'Message received loud and clear!')
 
-# def distribute_cards():
 
 
 

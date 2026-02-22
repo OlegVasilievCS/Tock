@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 if (chatController.text.isNotEmpty) {
                   socket?.emit('msg', chatController.text);
                   chatController.clear();
-                  socket?.emit('requestCard');
+                  socket?.emit('requestCard', widget.gameId);
                 }
               },
               child: const Text('Send to Server'),

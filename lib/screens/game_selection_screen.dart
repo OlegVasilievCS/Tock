@@ -53,11 +53,11 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       currentGameNumber = data.toString();
       print("Current game from Print is $currentGameNumber");
 
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => HomePage(gameId: currentGameNumber),
-      //   ),
-      // );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => HomePage(gameId: currentGameNumber),
+        ),
+      );
 
     });
 
