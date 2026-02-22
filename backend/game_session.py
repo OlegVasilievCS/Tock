@@ -7,7 +7,7 @@ class GameSession():
     def __init__(self, player_one):
         self.players = []
         self.players.append(player_one)
-        self.gameDeck = Deck()
+        self.game_deck = Deck()
 
 
         self.game_session_number = self.game_session_number_generator()

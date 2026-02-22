@@ -23,12 +23,3 @@ class Deck():
         return card_on_top
 
 
-# new_deck = Deck()
-# new_deck.create_deck()
-# new_deck.shuffle_deck()
-# new_deck.give_random_card()
-
-# print(str(len(new_deck.deck)) + str(new_deck.deck))
-# print(new_deck.give_random_card())
-# print(str(len(new_deck.deck)) + str(new_deck.deck))
-

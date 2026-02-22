@@ -9,9 +9,9 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 game_array = []
 
-new_deck = Deck()
-new_deck.create_deck()
-new_deck.shuffle_deck()
+# new_deck = Deck()
+# new_deck.create_deck()
+# new_deck.shuffle_deck()
 
 
 def find_game_via_id_and_add_new_player(currentGameNumber, new_player_joining):
@@ -41,6 +41,10 @@ def handle_game_creation(name_of_game_creator):
     new_game_session = GameSession(name_of_game_creator)
     game_array.append(new_game_session)
 
+    new_game_session.game_deck.create_deck()
+    new_game_session.game_deck.shuffle_deck()
+
+
     print(f'Game created for {new_game_session.players[0]} ')
     print(f'Game Number is {new_game_session.game_session_number} ')
     emit('gameNumberFromServer', new_game_session.game_session_number)
@@ -49,12 +53,14 @@ def handle_game_creation(name_of_game_creator):
 
 @socketio.on('requestCard')
 def handle_cards(game_id):
-    # distribute_cards()
     print(f"Received cards request from game: ", game_id)
-    hand = []
-    for i in range(4):
-        hand.append(new_deck.give_random_card())
-    emit('getCard',str(hand) )
+    for game in game_array:
+        if game.game_session_number == int(game_id):
+            print('Game found')
+            hand = []
+            for i in range(4):
+                hand.append(game.game_deck.give_random_card())
+            emit('getCard',str(hand))
 
 @socketio.on('sendPosition')
 def handle_marble(position):
