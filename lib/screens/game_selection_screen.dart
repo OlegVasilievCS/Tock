@@ -87,34 +87,32 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Game ID'),
-        content: TextField(
+        content: Column(
+        children: [
+          TextField(
           controller: gameNumberToJoin,
           decoration: InputDecoration(hintText: 'Enter your game ID'),
         ),
-        actions: [
-          TextButton(onPressed: () {
-            socket?.emit('joinGameViaGameID', gameNumberToJoin.text);
-            Navigator.of(context).pop();
-          }, child: Text('Submit'))
-        ],
-      )
-  );
-//TO DO: Continue game joining
-  Future openAddNameDialog() => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Your name'),
-        content: TextField(
-          controller: playerName,
-          decoration: InputDecoration(hintText: 'Enter your name to join game'),
+          SizedBox(height: 16),
+          TextField(
+            controller: playerName,
+            decoration: InputDecoration(hintText: 'Enter your name to join game'),
+          ),
+        ]
         ),
         actions: [
-          TextButton(onPressed: () {
-            socket?.emit('joinGame', playerName.text);
+          TextButton(
+            onPressed: () {
+            socket?.emit('joinGameViaGameID',{
+              'gameId': gameNumberToJoin.text,
+              'name': playerName.text
+      });
             Navigator.of(context).pop();
-          }, child: Text('Submit'))
-        ],
+          },
+          child: Text('Submit')
       )
+        ],
+      ),
   );
 
   @override
@@ -139,7 +137,6 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
             ),
             onTap: () async {
               await openJoinGameDialog();
-              await openAddNameDialog();
             },
           ),
       ]

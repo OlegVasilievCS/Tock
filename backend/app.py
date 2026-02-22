@@ -17,16 +17,22 @@ new_deck.shuffle_deck()
 # def handle_game_number():
 #     emit('gameNumberFromServer', )
 
-def find_game_via_id(currentGameNumber):
+def find_game_via_id_and_add_new_player(currentGameNumber, new_player_joining):
     for game in game_array:
         if int(currentGameNumber) == game.game_session_number:
+            if game.player_two == '':
+                game.player_two = str(new_player_joining)
             print("Game found")
-            
+            print(f"P1:", {game.player_one})
+            print(f"P2:", {game.player_two})
+
 
 @socketio.on('joinGameViaGameID')
-def handle_game_join(currentGameNumber):
-    find_game_via_id(currentGameNumber)
-    print(f"Request received to join game id: {str(currentGameNumber)}")
+def handle_game_join(data):
+    game_id = data.get('gameId')
+    new_player_joining = data.get('name')
+    find_game_via_id_and_add_new_player(game_id, new_player_joining)
+    print(f"Request received to join game id: {str(game_id)}")
 
 
 @socketio.on('startGame')
