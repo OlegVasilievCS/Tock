@@ -13,18 +13,17 @@ new_deck = Deck()
 new_deck.create_deck()
 new_deck.shuffle_deck()
 
-# @socketio.on('getGameNumber')
-# def handle_game_number():
-#     emit('gameNumberFromServer', )
 
 def find_game_via_id_and_add_new_player(currentGameNumber, new_player_joining):
     for game in game_array:
         if int(currentGameNumber) == game.game_session_number:
-            if game.player_two == '':
-                game.player_two = str(new_player_joining)
+            if len(game.players) < 4:
+                game.players.append(str(new_player_joining))
             print("Game found")
-            print(f"P1:", {game.player_one})
-            print(f"P2:", {game.player_two})
+            i = 1
+            for player in game.players:
+                print(f"P",{i}, ":", {player})
+                i += 1
 
 
 @socketio.on('joinGameViaGameID')
@@ -42,7 +41,7 @@ def handle_game_creation(name_of_game_creator):
     new_game_session = GameSession(name_of_game_creator)
     game_array.append(new_game_session)
 
-    print(f'Game created for {new_game_session.player_one} ')
+    print(f'Game created for {new_game_session.players[0]} ')
     print(f'Gname Number is {new_game_session.game_session_number} ')
     emit('gameNumberFromServer', new_game_session.game_session_number)
 
