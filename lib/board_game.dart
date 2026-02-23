@@ -1,6 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
 class BoardGame {
+  List<Alignment> spadeHouseHoles = [
+    Alignment(-0.7, 0.72), //SWH01
+    Alignment(-0.64, 0.81), //SWH02
+    Alignment(-0.77, 0.79), //SWH03
+    Alignment(-0.79, 0.66), //SWH04
+
+  ];
+
   List<Alignment> boardHoles = [
     Alignment(-0.175, 0.865), //SW00
     Alignment(-0.135, 0.78), //SW01

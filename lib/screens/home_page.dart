@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   List<String?> playerCards = [];
   List<String?> playerBalls = [];
   BoardGame boardGame = BoardGame();
-  int playerPosition = 0;
+  int playerPosition = 3;
   CardRules cardRules = CardRules();
   List<bool> cardAlreadyPlayed = [false, false, false, false];
 
@@ -40,13 +40,14 @@ class _HomePageState extends State<HomePage> {
         cardAlreadyPlayed[cardIndex] = true;
 
         if(value != null){
+          socket?.emit('changeMarblePosition', widget.gameId);
+
           setState(() {
           playerPosition += value;
 
         });
       }
 
-        // socket?.emit('startGame', playerPosition);
 
       },
       child: Image.asset(
@@ -146,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                     child: Image.asset('images/board.jpg'),
                   ),
                 Align(
-                  alignment: boardGame.boardHoles[playerPosition],
+                  alignment: boardGame.spadeHouseHoles[playerPosition],
                   child: SizedBox(
                     width: 13,
                     height: 13,

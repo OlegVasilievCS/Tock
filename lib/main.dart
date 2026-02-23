@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AI Anki',
-      home: GameSelectionScreen(),
+      home: HomePage(gameId: '2'),
     );
   }
 }
