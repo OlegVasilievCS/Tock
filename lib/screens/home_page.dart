@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   List<String?> playerCards = [];
   List<String?> playerBalls = [];
   BoardGame boardGame = BoardGame();
-  int playerPosition = 3;
+  int playerPosition = 0;
   CardRules cardRules = CardRules();
   List<bool> cardAlreadyPlayed = [false, false, false, false];
 
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                     child: Image.asset('images/board.jpg'),
                   ),
                 Align(
-                  alignment: boardGame.spadeHouseHoles[playerPosition],
+                  alignment: boardGame.heartEndHoles[playerPosition],
                   child: SizedBox(
                     width: 13,
                     height: 13,
