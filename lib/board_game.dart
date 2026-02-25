@@ -2,6 +2,21 @@ import 'package:flutter/cupertino.dart';
 
 class BoardGame {
 
+  List<Alignment> spadeHouseHoles = [
+    Alignment(-0.7, 0.72), //SWH01
+    Alignment(-0.64, 0.81), //SWH02
+    Alignment(-0.77, 0.79), //SWH03
+    Alignment(-0.79, 0.66), //SWH04
+  ];
+
+  List<Alignment> heartHouseHoles = [
+    Alignment(-0.7, -0.705), //NWH01
+    Alignment(-0.79, -0.64), //NWH02
+    Alignment(-0.77, -0.78), //NWH03
+    Alignment(-0.63, -0.79), //NWH04
+  ];
+
+
   List<Alignment> spadeEndHoles = [
     Alignment(0.009, 0.414), //SWE01
     Alignment(0.009, 0.53), //SWE02
