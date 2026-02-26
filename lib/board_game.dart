@@ -16,6 +16,19 @@ class BoardGame {
     Alignment(-0.63, -0.79), //NWH04
   ];
 
+  List<Alignment> cloverHouseHoles = [
+    Alignment(0.72, -0.705), //NEH01
+    Alignment(0.66, -0.80), //NEH02
+    Alignment(0.79, -0.77), //NEH03
+    Alignment(0.82, -0.64), //NEH04
+  ];
+
+  List<Alignment> diamondHouseHoles = [
+    Alignment(0.72, 0.71), //SEH01
+    Alignment(0.66, 0.81), //SEH02
+    Alignment(0.79, 0.79), //SEH03
+    Alignment(0.82, 0.65), //SEH04
+  ];
 
   List<Alignment> spadeEndHoles = [
     Alignment(0.009, 0.414), //SWE01
