@@ -39,9 +39,15 @@ class BoardGame {
 
   List<Alignment> heartEndHoles = [
     Alignment(0.009, 0.009), //NWE01
-    Alignment(0.009, 0.009, //NWE02
+    Alignment(0.009, 0.009), //NWE02
     Alignment(0.009, 0.009), //NWE03
     Alignment(0.009, 0.009, //NWE04
+  ];
+  List<Alignment> cloverEndHoles = [
+  Alignment(0.009, 0.009), //NWE01
+  Alignment(0.009, 0.009), //NWE02
+  Alignment(0.009, 0.009), //NWE03
+  Alignment(0.009, 0.009, //NWE04
   ];
 
 
