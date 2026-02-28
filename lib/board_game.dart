@@ -30,26 +30,32 @@ class BoardGame {
     Alignment(0.82, 0.65), //SEH04
   ];
 
-  List<Alignment> spadeEndHoles = [
-    Alignment(0.009, 0.414), //SWE01
-    Alignment(0.009, 0.53), //SWE02
-    Alignment(0.009, 0.642), //SWE03
-    Alignment(0.009, 0.76), //SWE04
+  List<Alignment> spadeEndHoles= [
+    Alignment(0.009, 0.414), //S01
+    Alignment(0.009, 0.53), //S02
+    Alignment(0.009, 0.642), //S03
+    Alignment(0.009, 0.76), //S04
   ];
 
+  List<Alignment>  cloverEndHoles = [
+    Alignment(0.009, -0.74), //N01
+    Alignment(0.009, -0.63), //N02
+    Alignment(0.009, -0.51), //N03
+    Alignment(0.009, -0.40), //N04
+  ];
   List<Alignment> heartEndHoles = [
-    Alignment(0.009, 0.009), //NWE01
-    Alignment(0.009, 0.009), //NWE02
-    Alignment(0.009, 0.009), //NWE03
-    Alignment(0.009, 0.009, //NWE04
-  ];
-  List<Alignment> cloverEndHoles = [
-  Alignment(0.009, 0.009), //NWE01
-  Alignment(0.009, 0.009), //NWE02
-  Alignment(0.009, 0.009), //NWE03
-  Alignment(0.009, 0.009, //NWE04
+  Alignment(-0.735, 0.009), //W01
+  Alignment(-0.625, 0.009), //W02
+  Alignment(-0.51, 0.009), //W03
+  Alignment(-0.395, 0.009), //W04
   ];
 
+  List<Alignment> diamondEndHoles = [
+    Alignment(0.76, 0.009), //E01
+    Alignment(0.645, 0.009), //E02
+    Alignment(0.532, 0.009), //E03
+    Alignment(0.42, 0.009), //E04
+  ];
 
 
   Alignment centreHole = Alignment(0,0);
