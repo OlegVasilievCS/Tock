@@ -35,8 +35,10 @@ def handle_game_join(data):
 
 
 @socketio.on('startGame')
-def handle_game_creation(name_of_game_creator):
-    print(f'Request from {name_of_game_creator} was received')
+def handle_game_creation(data):
+    name_of_game_creator = data.get('playerName')
+    player_number = data.get('playerNumber')
+    print(f'Request from Player {player_number}, {name_of_game_creator} was received')
 
     new_game_session = GameSession(name_of_game_creator)
     game_array.append(new_game_session)

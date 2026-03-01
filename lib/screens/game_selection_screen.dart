@@ -21,6 +21,8 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
   TextEditingController gameNumberToJoin = TextEditingController();
   String currentGameNumber = '';
 
+  int playerNumber = 0;
+
   @override
   void initState() {
     super.initState();
@@ -75,7 +77,11 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       ),
       actions: [
         TextButton(onPressed: () {
-          socket?.emit('startGame', playerName.text);
+          playerNumber = 1;
+          socket?.emit('startGame', {
+            'playerName':playerName.text,
+            'playerNumber': playerNumber
+          });
           Navigator.of(context).pop();
         }, child: Text('Submit'))
       ],
