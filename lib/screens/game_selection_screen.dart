@@ -57,7 +57,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HomePage(gameId: currentGameNumber),
+          builder: (context) => HomePage(gameId: currentGameNumber, playerNumber: playerNumber),
         ),
       );
 

@@ -9,7 +9,8 @@ import 'package:tock/card_rules.dart';
 
 class HomePage extends StatefulWidget{
   final String gameId;
-  const HomePage({super.key, required this.gameId});
+  final int playerNumber;
+  const HomePage({super.key, required this.gameId, required this.playerNumber});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,6 +30,15 @@ class _HomePageState extends State<HomePage> {
 
   int currentGameNumber = 0;
 
+  Widget _buildMarble(String color){
+    return SizedBox(
+      width: 13,
+      height: 13,
+      child: ClipOval(
+        child: Image.asset('images/${color}_marble.jpg', fit: BoxFit.cover),
+      ),
+    );
+  }
 
   Widget buildCard(int cardIndex){
     return Expanded(
@@ -146,6 +156,11 @@ class _HomePageState extends State<HomePage> {
                     top: Radius.circular(8.0)),
                     child: Image.asset('images/board.jpg'),
                   ),
+                if (widget.playerNumber == 1)
+                  ...boardGame.spadeHouseHoles.map((alignment) => Align(
+                    alignment: alignment,
+                    child: _buildMarble('green'),
+                  )).toList(),
                 Align(
                   alignment: boardGame.diamondEndHoles[playerPosition],
                   child: SizedBox(
