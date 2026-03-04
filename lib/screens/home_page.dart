@@ -161,6 +161,12 @@ class _HomePageState extends State<HomePage> {
                     alignment: alignment,
                     child: _buildMarble('green'),
                   )).toList(),
+
+                if (widget.playerNumber == 2)
+                  ...boardGame.heartHouseHoles.map((alignment) => Align(
+                    alignment: alignment,
+                    child: _buildMarble('blue'),
+                  )).toList(),
                 Align(
                   alignment: boardGame.diamondEndHoles[playerPosition],
                   child: SizedBox(

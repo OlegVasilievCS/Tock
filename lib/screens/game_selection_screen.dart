@@ -77,7 +77,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen>{
       ),
       actions: [
         TextButton(onPressed: () {
-          playerNumber = 1;
+          playerNumber = 2;
           socket?.emit('startGame', {
             'playerName':playerName.text,
             'playerNumber': playerNumber
