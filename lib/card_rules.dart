@@ -1,6 +1,6 @@
 class CardRules {
 
-  int? executeCardMovement(String cardValue){
+  int? executeCardMovement(String cardValue, int playerNumber){
     if(cardValue.contains('2')){
       return 2;
     }
@@ -35,6 +35,7 @@ class CardRules {
       return 12;
     }
     else if(cardValue.contains('king')){
+
       return 13;
     }
     else if(cardValue.contains('ace')){

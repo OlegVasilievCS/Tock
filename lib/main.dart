@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AI Anki',
       home: GameSelectionScreen(),
+
     );
   }
 }

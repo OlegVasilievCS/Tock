@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   socket_io.Socket? socket;
 
   TextEditingController chatController = TextEditingController();
-  List<String?> playerCards = [];
+  List<String> playerCards = [];
   List<String?> playerBalls = [];
   BoardGame boardGame = BoardGame();
   int playerPosition = 3;
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         print("Card ${cardIndex + 1} is played");
         print("Card ${playerCards[cardIndex]} is played");
-        int? value = cardRules.executeCardMovement(playerCards[cardIndex]!);
+        int? value = cardRules.executeCardMovement(playerCards[cardIndex], widget.playerNumber);
         cardAlreadyPlayed[cardIndex] = true;
 
         if(value != null){
@@ -54,7 +54,6 @@ class _HomePageState extends State<HomePage> {
 
           setState(() {
           playerPosition += value;
-
         });
       }
 
