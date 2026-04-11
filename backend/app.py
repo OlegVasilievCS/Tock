@@ -49,6 +49,7 @@ def handle_game_creation(data):
 
     print(f'Game created for {new_game_session.players[0]} ')
     print(f'Game Number is {new_game_session.game_session_number} ')
+    # print(f"Game initial cards are : {new_game_session.}")
     emit('gameNumberFromServer', new_game_session.game_session_number)
 
 
