@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   int playerPosition = 3;
   CardRules cardRules = CardRules();
   List<bool> cardAlreadyPlayed = [false, false, false, false];
+  List<bool> marbleSelected = [false, false, false, false];
+
 
   int currentGameNumber = 0;
 
@@ -87,20 +89,24 @@ class _HomePageState extends State<HomePage> {
       child: GestureDetector(
       onTap: () {
         print("Marble $marbleIndex is selected");
+
+        setState(() {
+          marbleSelected[marbleIndex] = !marbleSelected[marbleIndex];
+        });
       },
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Glow behind
-          SizedBox(
-            width: 56, height: 56,
+          if (marbleSelected[marbleIndex])
+            SizedBox(
+            width: 150, height: 150,
             child: ClipOval(
               child: Image.asset('images/glow.jpg'),
             ),
           ),
           // Marble on top
           SizedBox(
-            width: 40, height: 40,
+            width: 50, height: 50,
             child: ClipOval(
               child: Image.asset('images/green_marble.jpg', fit: BoxFit.cover),
             ),
@@ -228,9 +234,9 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   buildMarbleButton(0),
+                  buildMarbleButton(1),
                   buildMarbleButton(2),
                   buildMarbleButton(3),
-                  buildMarbleButton(4),
                 ],
               ),
             ),
