@@ -55,9 +55,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
           playerPosition += value;
         });
-      }
-
-
+        }
       },
       child: Image.asset(
           cardAlreadyPlayed[cardIndex]
@@ -68,6 +66,49 @@ class _HomePageState extends State<HomePage> {
       ),
       ),
       );
+  }
+  Widget buildMarbleGlow(int marbleIndex){
+    return Expanded(
+        child: GestureDetector(
+          onTap: () {
+            print("Glow ${marbleIndex} is selected");
+
+          },
+          child: Image.asset(
+              'images/glow.jpg',
+
+              fit: BoxFit.contain
+          ),
+        )
+    );
+  }
+  Widget buildMarbleButton(int marbleIndex) {
+    return Expanded(
+      child: GestureDetector(
+      onTap: () {
+        print("Marble $marbleIndex is selected");
+      },
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Glow behind
+          SizedBox(
+            width: 56, height: 56,
+            child: ClipOval(
+              child: Image.asset('images/glow.jpg'),
+            ),
+          ),
+          // Marble on top
+          SizedBox(
+            width: 40, height: 40,
+            child: ClipOval(
+              child: Image.asset('images/green_marble.jpg', fit: BoxFit.cover),
+            ),
+          ),
+        ],
+      ),
+      )
+    );
   }
 
   @override
@@ -91,6 +132,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void parseReceivedHand(data) {
+    print("from parseReceivedHand");
     String sentence = data.toString();
 
     String cleanSentence = sentence
@@ -167,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                     child: _buildMarble('blue'),
                   )).toList(),
                 Align(
-                  alignment: boardGame.diamondEndHoles[playerPosition],
+                  alignment: boardGame.boardHoles[playerPosition],
                   child: SizedBox(
                     width: 13,
                     height: 13,
@@ -181,6 +223,17 @@ class _HomePageState extends State<HomePage> {
             ),
             ),
             const Spacer(),
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  buildMarbleButton(0),
+                  buildMarbleButton(2),
+                  buildMarbleButton(3),
+                  buildMarbleButton(4),
+                ],
+              ),
+            ),
             SizedBox(
               height: 200,
               child: Row(
